@@ -44,10 +44,20 @@ public class TrivialRasterizer implements Rasterizer{
                 line.setP2(tmp);
             }
 
-            for (int x = line.getP1().getX(); x <= line.getP2().getX(); x+=3) {
-                int y = (int) Math.round(k * x + q);
-                raster.setPixel(x, y, defaultColor.getRGB());
+            if(line.isDotted())
+            {
+                for (int x = line.getP1().getX(); x <= line.getP2().getX(); x+=3) {
+                    int y = (int) Math.round(k * x + q);
+                    raster.setPixel(x, y, defaultColor.getRGB());
+                }
             }
+            else{
+                for (int x = line.getP1().getX(); x <= line.getP2().getX(); x++) {
+                    int y = (int) Math.round(k * x + q);
+                    raster.setPixel(x, y, defaultColor.getRGB());
+                }
+            }
+
 
 
         }
@@ -59,11 +69,21 @@ public class TrivialRasterizer implements Rasterizer{
                 line.setP1(line.getP2());
                 line.setP2(tmp);
             }
+if(line.isDotted())
+{
+    for (int y = line.getP1().getY(); y <= line.getP2().getY(); y+=3) {
+        int x = (int) Math.round((y - q) / k);
+        raster.setPixel(x, y, defaultColor.getRGB());
+    }
+}
+else{
+    for (int y = line.getP1().getY(); y <= line.getP2().getY(); y++) {
+        int x = (int) Math.round((y - q) / k);
+        raster.setPixel(x, y, defaultColor.getRGB());
+    }
+}
 
-            for (int y = line.getP1().getY(); y <= line.getP2().getY(); y+=3) {
-                int x = (int) Math.round((y - q) / k);
-                raster.setPixel(x, y, defaultColor.getRGB());
-            }
+
         }
 
 

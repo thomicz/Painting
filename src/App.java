@@ -25,6 +25,7 @@ public class App {
     private LIneCanvas lineCanvas;
     private LineCanvasRasterizer lineRasterizer;
     private boolean dottedMode = false;
+    private boolean correctionMode = false;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new App(2560, 1440).start());
@@ -81,10 +82,34 @@ public class App {
     }
 
     private void createMouseAdapters() {
+
+        keyAdapter = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    dottedMode = true;
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    dottedMode = false;
+                }
+            }
+        };
+
+        panel.setFocusable(true);
+        panel.addKeyListener(keyAdapter);
+
         mouseAdapter = new MouseAdapter() {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                panel.requestFocusInWindow();
                 mousePosition1 = new Point(e.getX(), e.getY());
             }
 
@@ -92,6 +117,8 @@ public class App {
             public void mouseDragged(MouseEvent e) {
                 Point mousePosition2 = new Point(e.getX(), e.getY());
                 Line line = new Line(mousePosition1, mousePosition2);
+                line.setDotted(dottedMode);
+
                 raster.clear();
                 lineRasterizer.rasterizeCanvas(lineCanvas);
                 rasterizer.rasterize(line);
@@ -102,24 +129,15 @@ public class App {
             public void mouseReleased(MouseEvent e) {
                 Point mousePosition2 = new Point(e.getX(), e.getY());
                 Line line = new Line(mousePosition1, mousePosition2);
+                line.setDotted(dottedMode);
+
                 lineCanvas.addLine(line);
                 lineRasterizer.rasterizeCanvas(lineCanvas);
                 rasterizer.rasterize(line);
                 panel.repaint();
             }
         };
-        keyAdapter = new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e){
-                if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-                    dottedMode = true;
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e){
-                dottedMode = false;
-            }
-        };
-
     }
+
+
 }
