@@ -44,7 +44,7 @@ public class TrivialRasterizer implements Rasterizer{
                 line.setP2(tmp);
             }
 
-            for (int x = line.getP1().getX(); x <= line.getP2().getX(); x++) {
+            for (int x = line.getP1().getX(); x <= line.getP2().getX(); x+=3) {
                 int y = (int) Math.round(k * x + q);
                 raster.setPixel(x, y, defaultColor.getRGB());
             }
@@ -60,7 +60,7 @@ public class TrivialRasterizer implements Rasterizer{
                 line.setP2(tmp);
             }
 
-            for (int y = line.getP1().getY(); y <= line.getP2().getY(); y++) {
+            for (int y = line.getP1().getY(); y <= line.getP2().getY(); y+=3) {
                 int x = (int) Math.round((y - q) / k);
                 raster.setPixel(x, y, defaultColor.getRGB());
             }
