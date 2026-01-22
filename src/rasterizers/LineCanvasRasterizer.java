@@ -1,24 +1,22 @@
 package rasterizers;
 
-import models.LIneCanvas;
 import models.Line;
+import models.LineCanvas;
 
 public class LineCanvasRasterizer {
-    private Rasterizer lineRasterizer;
-    private Rasterizer dottedRasterizer;
-    public LineCanvasRasterizer(Rasterizer lineRasterizer,Rasterizer dottedRasterizer) {
-        this.lineRasterizer = lineRasterizer;
-        this.dottedRasterizer = dottedRasterizer;
+
+    private final Rasterizer rasterizer;
+
+    public LineCanvasRasterizer(Rasterizer rasterizer) {
+        this.rasterizer = rasterizer;
     }
-    public void rasterizeCanvas(LIneCanvas lIneCanvas)
-    {
-        for(Line line : lIneCanvas.getLines()){
-            if (line.isDotted()) {
-                dottedRasterizer.rasterize(line);
-            }
-            else {
-                lineRasterizer.rasterize(line);
-            }
+
+    public void rasterizeCanvas(LineCanvas lineCanvas) {
+        if (lineCanvas == null) return;
+
+        for (Line line : lineCanvas.getLines()) {
+            if (line == null) continue;
+            rasterizer.rasterize(line);
         }
     }
 }

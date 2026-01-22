@@ -3,9 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LIneCanvas {
+public class LineCanvas {
     private List<Line> lines;
-    public LIneCanvas(){
+    public LineCanvas(){
         lines = new ArrayList<Line>();
     }
     public List<Line> getLines(){
