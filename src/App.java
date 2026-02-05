@@ -44,7 +44,7 @@ public class App {
         JFrame frame = new JFrame();
 
         frame.setLayout(new BorderLayout());
-        frame.setTitle("Delta : " + this.getClass().getName());
+        frame.setTitle("Painting");
         frame.setResizable(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +67,7 @@ public class App {
         frame.pack();
         frame.setVisible(true);
 
-        rasterizer = new TrivialRasterizer(Color.ORANGE, raster);
+        rasterizer = new TrivialRasterizer(Color.RED, raster);
 
         lineCanvas = new LineCanvas();
         lineRasterizer = new LineCanvasRasterizer(rasterizer);

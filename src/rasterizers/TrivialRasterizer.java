@@ -48,7 +48,7 @@ public class TrivialRasterizer implements Rasterizer {
             int sx = Integer.compare(dx, 0);
             int sy = Integer.compare(dy, 0);
             int m = Math.max(adx, ady);
-            return new Point(x1 + sx * m, y1 + sy * m); // 45°
+            return new Point(x1 + sx * m, y1 + sy * m);
         }
     }
 

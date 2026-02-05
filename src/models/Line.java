@@ -4,7 +4,6 @@ package models;
 public class Line {
 
     private Point p1, p2;
-    //private Color color = Color.RED;
     private boolean isDotted = false;
     private boolean correctionMode = false;
     public Line(Point p1, Point p2) {
