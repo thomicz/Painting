@@ -16,6 +16,8 @@ public class RasterBufferedImage implements Raster {
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
 
+    public BufferedImage getImage() { return img; } // název fieldu dle tvé třídy
+
     public void repaint(Graphics graphics) {
         graphics.drawImage(img, 0, 0, null);
     }

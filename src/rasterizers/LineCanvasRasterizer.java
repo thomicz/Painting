@@ -1,7 +1,6 @@
 package rasterizers;
 
 import models.Line;
-import models.LineCanvas;
 
 public class LineCanvasRasterizer {
 
@@ -11,10 +10,10 @@ public class LineCanvasRasterizer {
         this.rasterizer = rasterizer;
     }
 
-    public void rasterizeCanvas(LineCanvas lineCanvas) {
-        if (lineCanvas == null) return;
+    public void rasterizeCanvas(Scene scene) {
+        if (scene == null) return;
 
-        for (Line line : lineCanvas.getLines()) {
+        for (Line line : scene.getLines()) {
             if (line == null) continue;
             rasterizer.rasterize(line);
         }
