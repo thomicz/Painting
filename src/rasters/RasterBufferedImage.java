@@ -8,15 +8,13 @@ public class RasterBufferedImage implements Raster {
     private final BufferedImage img;
     private int color;
 
-    public BufferedImage getImg() {
-        return img;
-    }
-
     public RasterBufferedImage(int width, int height) {
         img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
 
-    public BufferedImage getImage() { return img; } // název fieldu dle tvé třídy
+    public BufferedImage getImg() {
+        return img;
+    }
 
     public void repaint(Graphics graphics) {
         graphics.drawImage(img, 0, 0, null);
@@ -33,7 +31,10 @@ public class RasterBufferedImage implements Raster {
 
     @Override
     public void setPixel(int x, int y, int color) {
-        img.setRGB(x, y, color);
+        // OŠETŘENÍ HRANIC: Pixel se zapíše, jen pokud je uvnitř plátna
+        if (x >= 0 && x < img.getWidth() && y >= 0 && y < img.getHeight()) {
+            img.setRGB(x, y, color);
+        }
     }
 
     @Override
@@ -57,5 +58,4 @@ public class RasterBufferedImage implements Raster {
     public int getHeight() {
         return img.getHeight();
     }
-
 }

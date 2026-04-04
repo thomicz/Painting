@@ -13,9 +13,9 @@ public class LineCanvasRasterizer {
     public void rasterizeCanvas(Scene scene) {
         if (scene == null) return;
 
-        for (Line line : scene.getLines()) {
-            if (line == null) continue;
-            rasterizer.rasterize(line);
-        }
+        //for (Line line : scene.getLines()) {
+          //  if (line == null) continue;
+            //rasterizer.rasterize(line);
+        //}
     }
 }

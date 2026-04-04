@@ -15,7 +15,7 @@ public class FloodFill {
      * with fillColor.
      */
     public void fill(RasterBufferedImage raster, int startX, int startY, Color fillColor) {
-        BufferedImage img = raster.getImage();
+        BufferedImage img = raster.getImg(); // Změněno z getImage() na getImg()
         int w = img.getWidth();
         int h = img.getHeight();
 

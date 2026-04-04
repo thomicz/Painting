@@ -1,24 +1,25 @@
 package rasterizers;
 
-import models.Circle;
-import models.Line;
-
+import models.Shape;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Scene {
-    private List<Line> lines = new ArrayList<>();
-    private List<Circle> circles = new ArrayList<>();
+    private final List<Shape> shapes = new ArrayList<>();
 
-    public List<Line> getLines() { return lines; }
-    public List<Circle> getCircles() { return circles; }
+    public void addShape(Shape shape) {
+        shapes.add(shape); // TOTO TADY CHYBĚLO! :)
+    }
 
-    public void addLines(List<Line> lines) { this.lines.addAll(lines); }
-    public void removeLine(Line line) { lines.remove(line); }
-    public void addCircle(Circle circle) { circles.add(circle); }
+    public void removeShape(Shape shape) {
+        shapes.remove(shape);
+    }
 
-    public void clear() {
-        lines.clear();
-        circles.clear();
+    public List<Shape> getShapes() {
+        return shapes;
+    }
+
+    public void clearShapes() {
+        shapes.clear();
     }
 }
